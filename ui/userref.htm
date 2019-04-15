@@ -1,0 +1,61 @@
+<nav aria-label="breadcrumb" style="background-color:#fff !important">
+	<ol class="breadcrumb">
+		<div class="col-md-6">
+			<h3><i class="fa fa-users"></i> รายการสมาชิก</h1>
+				<p>แสดงรายการสมาชิก</p>
+		</div>
+
+		<div class="text-right col-md-6">
+			<li class="breadcrumb-item"><a href="/fatfree-master"><i class="fa fa-home fa-lg"></i></a></li>
+			<li class="breadcrumb-item"><a href="/fatfree-master/addmember"><i class="fa fa-plus"></i>เพิ่มสมาชิกใหม่</a>
+			</li>
+
+		</div>
+	</ol>
+</nav>
+<div class="row">
+	<div class="col-md-12">
+		<nav aria-label="breadcrumb" style="background-color:#fff !important">
+			<div class="content breadcrumb">
+
+
+				<div class="table-responsive" style="padding:20px">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">รหัส</th>
+								<th scope="col">ชื่อ</th>
+								<th scope="col">นามสกุล</th>
+								<th scope="col">อีเมลล์</th>
+								<th scope="col">ตำแหน่ง</th>
+								<th scope="col">สิทธิ์</th>
+								<th scope="col">เวลา</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in list">
+								{{item}}
+								<td>{{ item.mid }}</td>
+								<td>{{ item.firstname }}</td>
+								<td>{{ item.lastname }}</td>
+								<td>{{ item.email }}</td>
+								<td>{{ item.position_name }}</td>
+								<td>{{ item.role_name }}</td>
+								<td>{{ item.updated }}</td>
+								<td>
+									<div class="btn-group" role="group" aria-label="Basic example">
+										<button type="button" class="btn btn-secondary" ng-click="onUpdate(item.mid)"><i
+												class="fa fa-edit"></i></button>
+										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal"
+											ng-click="model(item.firstname,item.mid)"><i class="fa fa-trash-o"></i></button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</nav>
+	</div>
+</div>

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation"
+    style="padding-right:10px !important;margin-right: 10px"><span class="navbar-toggler-icon"></span></button>
+  <div class="navbar-collapse collapse" id="navbarText">
+    <ul class="nav nav-tabs mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a style="color:#fff !important" class="nav-link " href="/fatfree-master/"><i
+            class="fa fa-home fa-lg fa-fw"></i>หน้าหลัก</a>
+      </li>
+      <li class="nav-item" ng-if="userLogin.role == 1">
+        <a style="color:#fff !important" class="nav-link" href="/fatfree-master/userref"><i
+            class="fa fa-users fa-lg fa-fw"></i>สมาชิก</a>
+      </li>
+    </ul>
+    <ul class="nav nav-tabs  mt-2 mt-lg-0">
+      <li class="nav-item" ng-if="userLogin.role == 1">
+        <form class="form-inline" ng-submit="onSubmitSearch()">
+          <select class="form-control select-custom" ng-model="member.search">
+            <option value="">ค้นหาตาม</option>
+            <option class="dropdown-item" style="color:#fff !important;" ng-repeat="item in search" value={{item}}>
+              {{item}}
+            </option>
+          </select>
+          <input class="form-control " type="search" placeholder="ค้นหาสมาชิก" aria-label="Search"
+            ng-model="member.key">
+          <button class="btn btn-outline-light" type="submit"><i class="fa fa-search fa-lg fa-fw"></i></button>
+        </form>
+      </li>
+      <li class="nav-item" ng-if="userLogin">
+        <a style="color:#fff !important" class="nav-link" ng-click="onLogout()"><i
+            class="fa fa-sign-in fa-lg fa-fw"></i>ออกจากระบบ</a>
+      </li>
+      <li class="nav-item" ng-if="!userLogin">
+        <a style="color:#fff !important" class="nav-link" href="/fatfree-master/login"><i
+            class="fa fa-sign-in fa-lg fa-fw"></i>เข้าสู่ระบบ</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="top:12rem !important;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ยืนยันการทำรายการ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="color:orangered;">
+        <b>ลบข้อมูลของ {{firstnameDel}}</b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" ng-click="onDelete(idDel)">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+</div>
