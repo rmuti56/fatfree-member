@@ -78,27 +78,47 @@ $f3->route('GET /',
 	}
 );
 
+//หน้าแสดงสมาชิก
 $f3->route('GET /userref',
 	function($f3) {
-		
 		$logined_email = $f3->get('SESSION.email');
-		if ($logined_email != '') {
+		$logined_role = $f3->get('SESSION.role');
+		if ($logined_email != '' && ($logined_role == '1' || $logined_role == '2')) {
 			$f3->set('menu','menu.htm');
 			$f3->set('content','userref.htm');
 			echo View::instance()->render('layout.htm');
-		} else {
+		} 
+		else if($logined_email != ''){
+			$f3->reroute('/');
+		}else {
 			$f3->reroute('/logout');
 		}
 		
 	}
 );
+//หน้า เพิ่มหรือแก้ไขสมาชิก
+$f3->route('GET /addmember',
+function($f3){
+	$logined_email = $f3->get('SESSION.email');
+	$logined_role = $f3->get('SESSION.role');
+	if ($logined_email != '' && $logined_role == '1') {
+		$f3->set('menu','menu.htm');
+		$f3->set('content','addmember.htm');
+		echo View::instance()->render('layout.htm');
+	} else if($logined_email != ''){
+		$f3->reroute('/userref');
+	}
+		else {
+		$f3->reroute('/logout');
+	}
+} );
 
 $f3->route('GET /login',
 function($f3){
 	$f3->set('menu','menu.htm');
 		$f3->set('content','login.htm');
 		echo View::instance()->render('layout.htm');
-} );
+	} );
 
 $f3->route('GET /logout',
 function($f3){
@@ -110,13 +130,6 @@ $f3->route('GET /register',
 function($f3){
 	$f3->set('menu','menu.htm');
 		$f3->set('content','register.htm');
-		echo View::instance()->render('layout.htm');
-} );
-
-$f3->route('GET /addmember',
-function($f3){
-	$f3->set('menu','menu.htm');
-		$f3->set('content','addmember.htm');
 		echo View::instance()->render('layout.htm');
 } );
 

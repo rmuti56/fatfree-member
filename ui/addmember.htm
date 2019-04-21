@@ -27,69 +27,86 @@
   <nav aria-label="breadcrumb" style="background-color:#fff !important">
     <div class="content breadcrumb">
       <div class="col-sm-12 form-custom">
-
-        <div class="form-group">
-          <label for="">อีเมลล์</label>
-          <input type="email" class="form-control" placeholder="กรุณากรอกอีเมลล์" required ng-model="member.email">
-        </div>
-        <div class="form-group" ng-if="newData">
-          <label for="">รหัสผ่าน</label>
-          <input type="text" class="form-control" placeholder="กรุณากรอกรหัสผ่าน(6 ตัวอักษรขึ้นไป)"
-            ng-model="member.password" minlength="6">
-        </div>
-        <div class="form-group" ng-if="!newData">
-          <label for="">รหัสผ่าน</label>
-          <input type="text" class="form-control" placeholder="กรุณากรอกรหัสผ่าน(6 ตัวอักษรขึ้นไป)" required
-            ng-model="member.password" minlength="6">
-        </div>
         <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="">ชื่อ</label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" required ng-model="member.firstname">
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="">นามสกุล</label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกนามสกุล" required
-                ng-model="member.lastname">
-            </div>
-          </div>
-        </div>
+          <div class="col-md-4 sm-12 text-center">
+            <img class="profile" ng-src="{{member.fileUpload}}" alt="รูปประจำตัว" ng-model="member.fileUpload"
+              id="preview">
+            <input type="file" class="file-profile" id="images" name="images" custom-on-change="uploadFile"
+              style="display:none;" ng-model="member.profile" accept="image/*">
+            <label for="images" class="file-profile">
+              <img src="/fatfree-master/ui/images/ดาวน์โหลด.jpg" alt="" class="upload">
+            </label>
 
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="">ตำแหน่ง</label>
-              <select name="" id="" class="form-control" required ng-model="member.position">
-                <option value="">เลือกตำแหน่งงาน</option>
-                <option ng-repeat="item in position" value={{item}}>{{item}}
-                </option>
-              </select>
-            </div>
+
           </div>
-          <div class="col-sm-6">
+          <div class="col-md-8 sm-12">
+
             <div class="form-group">
-              <label for="">สิทธิ์ผู้ใช้งาน</label>
-              <select name="" id="" class="form-control" required ng-model="member.role">
-                <option value="">เลือกสิทธิ์ผู้ใช้งาน</option>
-                <option ng-repeat="item in role" value="{{item}}">{{item}}
-                </option>
-              </select>
+              <label for="">อีเมลล์</label>
+              <input type="email" class="form-control" placeholder="กรุณากรอกอีเมลล์" required ng-model="member.email">
             </div>
+            <div class="form-group" ng-if="newData">
+              <label for="">รหัสผ่าน</label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกรหัสผ่าน(6 ตัวอักษรขึ้นไป)"
+                ng-model="member.password" minlength="6">
+            </div>
+            <div class="form-group" ng-if="!newData">
+              <label for="">รหัสผ่าน</label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกรหัสผ่าน(6 ตัวอักษรขึ้นไป)" required
+                ng-model="member.password" minlength="6">
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">ชื่อ</label>
+                  <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" required
+                    ng-model="member.firstname">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">นามสกุล</label>
+                  <input type="text" class="form-control" placeholder="กรุณากรอกนามสกุล" required
+                    ng-model="member.lastname">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">ตำแหน่ง</label>
+                  <select name="" id="" class="form-control" required ng-model="member.position">
+                    <option value="">เลือกตำแหน่งงาน</option>
+                    <option ng-repeat="item in position" value={{item}}>{{item}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">สิทธิ์ผู้ใช้งาน</label>
+                  <select name="" id="" class="form-control" required ng-model="member.role">
+                    <option value="">เลือกสิทธิ์ผู้ใช้งาน</option>
+                    <option ng-repeat="item in role" value="{{item}}">{{item}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="form-group text-right" ng-if="newData">
+              <button class="btn btn-secondary" type="submit">
+                <i class="fa fa-save"></i> แก้ไขข้อมูลสมาชิก
+              </button>
+            </div>
+            <div class="form-group text-right" ng-if="!newData">
+              <button class="btn btn-secondary" type="submit">
+                <i class="fa fa-save"></i> บันทึกข้อมูลสมาชิก
+              </button>
+            </div>
+
           </div>
-        </div>
-        <hr>
-        <div class="form-group text-right" ng-if="newData">
-          <button class="btn btn-secondary" type="submit">
-            <i class="fa fa-save"></i> แก้ไขข้อมูลสมาชิก
-          </button>
-        </div>
-        <div class="form-group text-right" ng-if="!newData">
-          <button class="btn btn-secondary" type="submit">
-            <i class="fa fa-save"></i> บันทึกข้อมูลสมาชิก
-          </button>
         </div>
 
       </div>

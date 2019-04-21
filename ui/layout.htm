@@ -7,14 +7,13 @@
 	<base href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>" />
 	<link rel="icon" type="image/x-icon" href="ui/images/member.png">
 	<link rel="stylesheet" href="lib/code.css" type="text/css" />
-	<!-- <link rel="stylesheet" href="ui/css/base.css" type="text/css" /> -->
 	<link rel="stylesheet" href="ui/css/custom.css" type="text/css" />
-	<link rel="stylesheet" href="../../fatfree-master/node_modules/bootstrap/dist/css/bootstrap.min.css"
-		type="text/css" />
+	<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="../../node_modules/chart.js/dist/Chart.min.css" type="text/css" />
 	<link rel="stylesheet" type="text/css"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<script src="../../fatfree-master/node_modules/angular/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<script src="../../node_modules/angular/angular.min.js"></script>
 	<script src="/fatfree-master/ui/app.js"></script>
 	<style>
 		.alert {
@@ -28,15 +27,22 @@
 </head>
 
 <body ng-controller="UserController">
+
+	<div class="loader" ng-if="loader"></div>
 	<?php echo $this->render(Base::instance()->get('menu')); ?>
-	<div class="container" style="padding-top:100px;margin-bottom:5rem;">
+
+	<div class="container " style="padding-top:100px;margin-bottom:5rem;">
 		<?php echo $this->render(Base::instance()->get('content')); ?>
 	</div>
 
 
 
-	<script src="../../fatfree-master/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="../../fatfree-master/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="../../node_modules/chart.js/dist/Chart.min.js"></script>
+
 
 </body>
 

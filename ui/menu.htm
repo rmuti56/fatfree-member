@@ -8,17 +8,18 @@
         <a style="color:#fff !important" class="nav-link " href="/fatfree-master/"><i
             class="fa fa-home fa-lg fa-fw"></i>หน้าหลัก</a>
       </li>
-      <li class="nav-item" ng-if="userLogin.role == 1">
+      <li class="nav-item" ng-if="userLogin.role == 1 || userLogin.role == 2">
         <a style="color:#fff !important" class="nav-link" href="/fatfree-master/userref"><i
             class="fa fa-users fa-lg fa-fw"></i>สมาชิก</a>
       </li>
     </ul>
+
     <ul class="nav nav-tabs  mt-2 mt-lg-0">
-      <li class="nav-item" ng-if="userLogin.role == 1">
+      <li class="nav-item" ng-if="userLogin.role == 1 || userLogin.role == 2">
         <form class="form-inline" ng-submit="onSubmitSearch()">
           <select class="form-control select-custom" ng-model="member.search">
             <option value="">ค้นหาตาม</option>
-            <option class="dropdown-item" style="color:#fff !important;" ng-repeat="item in search" value={{item}}>
+            <option class="dropdown-item " style="color:#fff !important;" ng-repeat="item in search" value={{item}}>
               {{item}}
             </option>
           </select>

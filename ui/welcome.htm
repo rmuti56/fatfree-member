@@ -1,3 +1,144 @@
-<div class="header center text-center">
-	<p><img src="ui/images/logo.png"></p>
+<div class="col-lg-6 mx-auto">
+	<div class="header center text-center">
+		<div class="member-header text-left">
+			<h3 style="color:#fff;"><i class="fa fa-pinterest-square"> Manager</i></h5>
+		</div>
+		<div class="bd-example">
+			<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleCaptions" ng-repeat="item in list | filter:{position_name : 'Manager'}"
+						data-slide-to="{{$index +1}}">
+					</li>
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="https://noleggiaunmanager.com/public/noleggia/StrutturaSito/n1mDesktop/immagine_manager.png"
+							class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+
+							<h5><i class="fa fa-pinterest-square"></i> Manager</h5>
+							<p><i class="fa fa-lightbulb-o"></i> วางแผนงานของบริษัท</p>
+						</div>
+					</div>
+					<div class="carousel-item " ng-repeat="item in list" ng-if="item.position_name == 'Manager'">
+						<img ng-src="{{item.images}}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5><i class="fa fa-user"></i>{{item.firstname}} {{item.lastname}}</h5>
+							<p><i class="fa fa-pinterest-square"></i>ตำแหน่ง {{item.position_name}}</p>
+						</div>
+					</div>
+
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-lg-6 mx-auto">
+	<div class="header center text-center">
+		<div class="member-header text-left">
+			<h3 style="color:#fff;"><i class="fa fa-pinterest-square"> Frontend Developer</i></h5>
+		</div>
+		<div class="bd-example">
+			<div id="carouselExampleCaptions1" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleCaptions1" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleCaptions1"
+						ng-repeat="item in list | filter:{position_name : 'Frontend Developer'}" data-slide-to="{{ $index + 1 }}">
+					</li>
+
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="https://www.myamcat.com/blog/wp-content/uploads/2018/01/front-end-developer.jpg"
+							class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+
+							<h5><i class="fa fa-pinterest-square"></i> Frontend Developer</h5>
+							<p><i class="fa fa-lightbulb-o"></i> ใช้ความรู้ในด้านการออกแบบมาผสมผสานกับศิลปะแห่งการเขียนโปรแกรม</p>
+						</div>
+					</div>
+					<div class="carousel-item " ng-repeat="item in list" ng-if="item.position_name == 'Frontend Developer'">
+						<img ng-src="{{item.images}}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5><i class="fa fa-user"></i>{{item.firstname}} {{item.lastname}}</h5>
+							<p><i class="fa fa-pinterest-square"></i>ตำแหน่ง {{item.position_name}}</p>
+						</div>
+					</div>
+
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleCaptions1" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleCaptions1" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-lg-6 mx-auto">
+	<div class="header center text-center">
+		<div class="member-header text-left">
+			<h3 style="color:#fff;"><i class="fa fa-pinterest-square"> Backend Developer</i></h5>
+		</div>
+		<div class="bd-example">
+			<div id="carouselExampleCaptions2" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleCaptions2" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleCaptions2" data-slide-to="{{ $index + 1 }}"
+						ng-repeat="item in list | filter:{position_name : 'Backend Developer'}"></li>
+
+				</ol>
+				<div class="carousel-inner">
+
+					<div class="carousel-item active">
+						<img
+							src="https://spzone-simpleprogrammer.netdna-ssl.com/wp-content/uploads/2016/12/What-Is-Back-End-Development.png"
+							class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5><i class="fa fa-pinterest-square"></i>Backend Developer</h5>
+							<p><i class="fa fa-lightbulb-o"></i> วางระบบด้านหลังทั้งหมด </p>
+						</div>
+					</div>
+
+
+					<div class="carousel-item " ng-repeat="item in list" ng-if="item.position_name == 'Backend Developer'">
+						<img ng-src="{{item.images}}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5><i class="fa fa-user"></i>{{item.firstname}} {{item.lastname}}</h5>
+							<p><i class="fa fa-pinterest-square"></i>ตำแหน่ง {{item.position_name}}</p>
+						</div>
+					</div>
+
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleCaptions2" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleCaptions2" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<hr style="margin-top:5%;margin-bottom:5%;">
+<div class="col-lg-8 mx-auto chart-header text-left">
+	<h3 style="color:#fff;"><i class="fa fa-bar-chart"> กราฟจำนวนสมาชิกในแต่ละตำแหน่ง</i></h5>
+</div>
+<div class="col-lg-8 mx-auto box-chart">
+	<canvas id="myChart" width="100%" height="80%" style="padding:5%;"></canvas>
 </div>

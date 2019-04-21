@@ -72,15 +72,10 @@ class Api
         }
        
     }
-    function removeslashes($string)
-    {
-        $string=implode("",explode("\\",$string));
-        return stripslashes(trim($string));
-    }
 
     //ค้นหาตาม id
     private function searchById($key){
-        $api_data = $this->db->exec("SELECT  mid,email,password,firstname,lastname,updated,position_name,role_name
+        $api_data = $this->db->exec("SELECT  mid,email,password,firstname,lastname,updated,images,position_name,role_name
         FROM member_tbl,position_tbl,role_tbl
         WHERE member_tbl.position = position_tbl.pid AND member_tbl.role = role_tbl.rid AND member_tbl.mid = :key
          ORDER BY updated DESC",array(
@@ -102,7 +97,7 @@ class Api
     //นำข้อมูลทั้งหมดมาแสดง
     public function get_user_array()
     {
-        $api_data = $this->db->exec("SELECT  mid,email,password,firstname,lastname,updated,position_name,role_name
+        $api_data = $this->db->exec("SELECT  mid,email,password,firstname,lastname,updated,images,position_name,role_name
          FROM member_tbl,position_tbl,role_tbl
          WHERE member_tbl.position = position_tbl.pid AND member_tbl.role = role_tbl.rid
           ORDER BY updated DESC");
@@ -123,6 +118,7 @@ class Api
             $position = $this->position($post_data_array['position']);
             $role = $this->role($post_data_array['role']);
             $updated = date("Y-m-d H:i:s");
+            $images = $post_data_array['image'];
             $new_email_Data = $this->db->exec("SELECT * FROM member_tbl WHERE email = :email", array(
                 ':email' => $email
             ));
@@ -136,7 +132,7 @@ class Api
                if($password == ''){
                
                 $result = $this->db->exec("UPDATE `member_tbl` SET email=:email,firstname=:firstname ,lastname=:lastname
-                ,position=:position, role=:role, updated=:updated WHERE mid = :id"
+                ,position=:position, role=:role, updated=:updated,images=:images WHERE mid = :id"
                 , array(
                     ':email' => $email,
                     ':id' => $id,
@@ -144,25 +140,27 @@ class Api
                     ':lastname' => $lastname,
                     ':position' => $position,
                     ':role' => $role,
-                    ':updated' => $updated
+                    ':updated' => $updated,
+                    ':images'=>$images
                 ));
                 header('Content-Type: application/json');
                 echo json_encode($result);
                }else{
-                // $result = $this->db->exec("UPDATE `member_tbl` SET email=:email,password=:password,firstname=:firstname ,lastname=:lastname
-                // ,position=:position,role=:role,updated=:updated WHERE mid = :id"
-                // , array(
-                //     ':email' => $email,
-                //     ':password' => $password,
-                //     ':id' => $id,
-                //     ':firstname' => $firstname,
-                //     ':lastname' => $lastname,
-                //     ':position' => $position,
-                //     ':role' => $role,
-                //     ':updated' => $updated,   
-                // ));
-                // header('Content-Type: application/json');
-                // echo json_encode($result);
+                $result = $this->db->exec("UPDATE `member_tbl` SET email=:email,password=:password,firstname=:firstname ,lastname=:lastname
+                ,position=:position,role=:role,updated=:updated,images=:images WHERE mid = :id"
+                , array(
+                    ':email' => $email,
+                    ':password' => $password,
+                    ':id' => $id,
+                    ':firstname' => $firstname,
+                    ':lastname' => $lastname,
+                    ':position' => $position,
+                    ':role' => $role,
+                    ':updated' => $updated,   
+                    ':images'=>$images
+                ));
+                header('Content-Type: application/json');
+                echo json_encode($result);
                }
             }
         }
@@ -191,7 +189,10 @@ class Api
            // $f3->set('CACHE','memcache=localhost:3333');
              //   new Session();
                 $f3->set('SESSION.email',$email);
-             $login_email = $f3->get('SESSION.email');
+                $set_role = $api_data[0]['role'];
+                $f3->set('SESSION.role',$set_role);
+                // $login_email = $f3->get('SESSION.email');
+                // $login_role = $f3->get('SESSION.role');
                 header('Content-Type: application/json');
                echo json_encode($api_data);
             } else {
@@ -234,6 +235,7 @@ class Api
             $password = $post_data_array['password'];
             $firstname = $post_data_array['firstname'];
             $lastname = $post_data_array['lastname'];
+            $images = $post_data_array['image'];
             if($post_data_array['position'] && $post_data_array['role']){
                 $position = $this->position($post_data_array['position']);
                 $role = $this->role($post_data_array['role']);
@@ -250,7 +252,7 @@ class Api
                 header('Content-Type: application/json');
                 echo json_encode('email error');
             } else {
-                $result = $this->db->exec("INSERT INTO `member_tbl`(email,password,firstname,lastname,position,role,created,updated) VALUES(:email,:password,:firstname,:lastname,:position,:role,:created,:updated)"
+                $result = $this->db->exec("INSERT INTO `member_tbl`(email,password,firstname,lastname,position,role,created,updated,images) VALUES(:email,:password,:firstname,:lastname,:position,:role,:created,:updated,:images)"
                 , array(
                     ':email' => $email,
                     ':password' => $password,
@@ -259,7 +261,8 @@ class Api
                     ':position' => $position,
                     ':role' => $role,
                     ':created' => $created,
-                    ':updated' => $updated,   
+                    ':updated' => $updated, 
+                    ':images'=>$images  
                 ));
                 if ($result) {
                     header('Content-Type: application/json');

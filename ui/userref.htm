@@ -20,7 +20,7 @@
 
 
 				<div class="table-responsive" style="padding:20px">
-					<table class="table table-hover">
+					<table class="table table-hover" id="member">
 						<thead>
 							<tr>
 								<th scope="col">รหัส</th>
@@ -30,7 +30,7 @@
 								<th scope="col">ตำแหน่ง</th>
 								<th scope="col">สิทธิ์</th>
 								<th scope="col">เวลา</th>
-								<th scope="col"></th>
+								<th scope="col" ng-if="userLogin.role == 1"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -43,7 +43,7 @@
 								<td>{{ item.position_name }}</td>
 								<td>{{ item.role_name }}</td>
 								<td>{{ item.updated }}</td>
-								<td>
+								<td ng-if="userLogin.role == 1">
 									<div class="btn-group" role="group" aria-label="Basic example">
 										<button type="button" class="btn btn-secondary" ng-click="onUpdate(item.mid)"><i
 												class="fa fa-edit"></i></button>
@@ -53,6 +53,18 @@
 								</td>
 							</tr>
 						</tbody>
+						<tfoot>
+							<tr>
+								<th scope="col">รหัส</th>
+								<th scope="col">ชื่อ</th>
+								<th scope="col">นามสกุล</th>
+								<th scope="col">อีเมลล์</th>
+								<th scope="col">ตำแหน่ง</th>
+								<th scope="col">สิทธิ์</th>
+								<th scope="col">เวลา</th>
+								<th scope="col" ng-if="userLogin.role == 1"></th>
+							</tr>
+						</tfoot>
 					</table>
 				</div>
 			</div>
